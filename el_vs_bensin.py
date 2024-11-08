@@ -31,27 +31,34 @@ ____
 
 @author: Daniel Dale Laabak
 """
-km = 10000 #kilometer pr. år
+
+"""
+Variabler for utregning
+"""
+
+km = 10000 #kilometer pr. år 
 fe = 5000 #forsikringspris elbil
 fb = 7500 #forsikringspris bensinbil
 tfa = 8.38 #trafikkforsikringsavgift daglig
-tfa_ar = tfa*365 #trafikkforsikringsavgift årlig (365 dager i et år)
+tfa_ar = tfa * 365 #trafikkforsikringsavgift årlig (365 dager i et år)
 eb_kWh_km = 0.2 #elbil antall kWh pr. km
 sp = 2 #elbil strømpris pr kWh
-eb_kWh_kost_ar = round(km*eb_kWh_km*sp) #strømkostnad basert på antall kilometer pr år
+eb_kWh_kost_ar = km*eb_kWh_km*sp #strømkostnad basert på antall kilometer pr år
 bpkm = 1 #bensinpris pr. km
-bpkm_kost_ar = km*bpkm #bensinkostnad baset på antall kilometer pr år
+bpkm_kost_ar = km * bpkm #bensinkostnad baset på antall kilometer pr år
 be = 0.1 #bomkost elbil pr. kilometer
-be_kost = be*km #bomkost elbil basert på antall kilometer pr år
+be_kost = be * km #bomkost elbil basert på antall kilometer pr år
 bb = 0.3 #bomkost bensinbil pr. kilometer
-bb_kost = bb*km #bomkost bensinbil basert på antall kilometer pr år
+bb_kost = bb * km #bomkost bensinbil basert på antall kilometer pr år
 
 
 sumelbil = fe + tfa_ar + eb_kWh_kost_ar + be_kost #summerer kostnader knyttet til el-bil
 sumbensinbil = fb + tfa_ar + bpkm_kost_ar + bb_kost #summerer kostnader knyttet til bensinbil
 differanse = sumbensinbil - sumelbil #regner ut differansen mellom el- og bensinbil
 
-#Lager variabel for å vise hva som er billigst til slutt
+"""
+Lager variabel for å vise hva som er billigst til slutt
+"""
 if sumelbil > sumbensinbil:
     billigst = "Bensinbil"
 elif sumbensinbil > sumelbil:
@@ -69,8 +76,10 @@ print(f"kr.{fe:.2f},-     |    kr. {fb:.2f},-")
 print(f"\nTrafikkforsikringsavgift: kr. {tfa_ar:.2f},- (lik for begge)")
 print("_______________________________________________________________________")
 print(f"Kostnad basert på kjørelengde, {km} km/år:")
-print("\nElbil                 |    Bensinbil")
+print("\nElbil                 |   Bensinbil")
 print(f"strøm: kr.{eb_kWh_kost_ar:.2f},-   |   bensin: kr. {bpkm_kost_ar:.2f},-")
 print(f"bom: kr.{be_kost:.2f},-     |   bom: kr. {bb_kost:.2f},-")
+print("_______________________________________________________________________")
+print(f"Sum elbil: kr. {sumelbil:.2f},-     |   Sum bensinbil: kr. {sumbensinbil:.2f},-")
 print("_______________________________________________________________________")
 print(f"\n-------> Billigst: {billigst} ! <--------")
